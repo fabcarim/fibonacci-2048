@@ -14,6 +14,10 @@ body {
   padding: 20px;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .container {
   width: 100%;
   max-width: 640px;
