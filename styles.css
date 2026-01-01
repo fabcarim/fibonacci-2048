@@ -12,6 +12,7 @@ body {
   align-items: flex-start;
   min-height: 100vh;
   padding: 12px;
+  overscroll-behavior: contain;
 }
 
 .hidden {
@@ -140,6 +141,7 @@ h1 {
   width: clamp(260px, min(90vw, calc(100vh - 220px)), 520px);
   aspect-ratio: 1 / 1;
   margin: 0 auto;
+  touch-action: none;
 }
 
 .cell {

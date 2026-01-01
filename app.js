@@ -402,12 +402,19 @@ let touchStartX = 0;
 let touchStartY = 0;
 
 function handleTouchStart(e) {
+  e.preventDefault();
   const touch = e.touches[0];
   touchStartX = touch.clientX;
   touchStartY = touch.clientY;
 }
 
+function handleTouchMove(e) {
+  // Prevent page scrolling while swiping on the board.
+  e.preventDefault();
+}
+
 function handleTouchEnd(e) {
+  e.preventDefault();
   const touch = e.changedTouches[0];
   const dx = touch.clientX - touchStartX;
   const dy = touch.clientY - touchStartY;
@@ -429,8 +436,9 @@ restartBtn.addEventListener('click', () => initGame());
 undoBtn.addEventListener('click', () => undo());
 modeButtons.forEach((btn) => btn.addEventListener('click', () => switchMode(btn.dataset.mode)));
 document.addEventListener('keydown', handleKeyDown);
-document.addEventListener('touchstart', handleTouchStart, { passive: true });
-document.addEventListener('touchend', handleTouchEnd, { passive: true });
+boardEl.addEventListener('touchstart', handleTouchStart, { passive: false });
+boardEl.addEventListener('touchmove', handleTouchMove, { passive: false });
+boardEl.addEventListener('touchend', handleTouchEnd, { passive: false });
 
 // start default mode
 switchMode(currentMode);
