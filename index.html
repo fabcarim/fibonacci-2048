@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 Variants V5.0</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div>
+        <h1>2048 Variants <span class="version">V5.0</span></h1>
+        <p class="subtitle">Scegli modalità: classica, a tempo, Fibonacci o solo numeri primi.</p>
+      </div>
+      <div class="score-panel">
+        <div class="score-box">
+          <div class="label">Score</div>
+          <div id="score" class="value">0</div>
+        </div>
+        <div class="score-box">
+          <div class="label" id="best-label">Best</div>
+          <div id="best-score" class="value">0</div>
+        </div>
+        <div class="score-box" id="timer-box" aria-live="polite">
+          <div class="label">Tempo</div>
+          <div id="timer" class="value">--</div>
+        </div>
+      </div>
+    </header>
 
+    <div class="mode-select" aria-label="Scegli la modalità">
+      <button class="btn mode-btn" data-mode="classic">Classica</button>
+      <button class="btn mode-btn" data-mode="timed">A tempo</button>
+      <button class="btn mode-btn" data-mode="fibonacci">Fibonacci</button>
+      <button class="btn mode-btn" data-mode="prime">Primi</button>
+    </div>
+
+    <div class="controls">
+      <button id="new-game" class="btn">New Game</button>
+      <button id="undo" class="btn">Undo</button>
+    </div>
+
+    <div class="status-line" aria-live="polite">
+      <span class="pill">Modalità attiva:</span>
+      <span id="mode-name" class="pill pill-strong">Classica</span>
+      <span id="mode-note" class="mode-note">Regola 2048 classica con tessere 2/4.</span>
+    </div>
+
+    <div class="board" id="board" role="grid" aria-label="Tabellone 2048"></div>
+  </div>
+
+  <div id="overlay" class="overlay hidden" role="alert">
+    <div class="overlay-content">
+      <h2 id="overlay-title">Game Over</h2>
+      <p id="overlay-message">Non ci sono più mosse.</p>
+      <button id="restart" class="btn">Restart</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
