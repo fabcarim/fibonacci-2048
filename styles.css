@@ -79,6 +79,33 @@ h1 {
   flex-wrap: wrap;
 }
 
+.status-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  color: #8f857f;
+}
+
+.pill {
+  background: #e8dfd2;
+  color: #776e65;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.pill-strong {
+  background: #d96c3b;
+  color: #fff;
+  font-weight: 700;
+}
+
+.mode-note {
+  font-size: 14px;
+}
+
 .btn {
   background: #8f7a66;
   border: none;

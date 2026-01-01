@@ -12,6 +12,8 @@ const undoBtn = document.getElementById('undo');
 const timerBox = document.getElementById('timer-box');
 const timerEl = document.getElementById('timer');
 const modeButtons = Array.from(document.querySelectorAll('.mode-btn'));
+const modeNameEl = document.getElementById('mode-name');
+const modeNoteEl = document.getElementById('mode-note');
 
 let grid = [];
 let score = 0;
@@ -81,6 +83,7 @@ function spawnValue(values) {
 const modes = {
   classic: {
     label: 'Classica',
+    description: 'Regola 2048 classica con tessere 2/4.',
     timer: null,
     spawn: () => spawnValue([
       { value: 2, prob: 0.9 },
@@ -91,6 +94,7 @@ const modes = {
   },
   timed: {
     label: 'A tempo',
+    description: 'Stesse regole classiche ma con conto alla rovescia.',
     timer: 120,
     spawn: () => spawnValue([
       { value: 2, prob: 0.9 },
@@ -101,6 +105,7 @@ const modes = {
   },
   fibonacci: {
     label: 'Fibonacci',
+    description: 'Solo fusioni tra numeri consecutivi di Fibonacci (1+1 permesso).',
     timer: null,
     spawn: () => spawnValue([
       { value: 1, prob: 0.75 },
@@ -127,6 +132,7 @@ const modes = {
   },
   prime: {
     label: 'Primi',
+    description: 'Fondi solo numeri primi consecutivi (2+2 → 3 per iniziare).',
     timer: null,
     spawn: () => spawnValue([
       { value: 2, prob: 0.7 },
@@ -155,6 +161,12 @@ function loadBestScore() {
   bestScore = stored ? parseInt(stored, 10) : 0;
   bestScoreEl.textContent = bestScore.toString();
   bestLabelEl.textContent = `Best (${modes[currentMode].label})`;
+}
+
+function updateModeMeta() {
+  const mode = modes[currentMode];
+  modeNameEl.textContent = mode.label;
+  modeNoteEl.textContent = mode.description;
 }
 
 function saveBestScore() {
@@ -348,6 +360,7 @@ function initGame() {
   stopTimer();
   gameOver = false;
   loadBestScore();
+  updateModeMeta();
   grid = createEmptyGrid();
   score = 0;
   history = [];
